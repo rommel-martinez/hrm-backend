@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rommel-martinez/hrm-backend.git"
+  },
+  "author": "rommel martinez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rommel-martinez/hrm-backend/issues"
+  },
+  "homepage": "https://github.com/rommel-martinez/hrm-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "mysql2": "^3.9.8"
+  }
+}
