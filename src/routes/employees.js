@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const conn = require('../database/connection')
-var moment = require('moment');
 const connection = require('../database/connection');
+var moment = require('moment');
 
 router.post(`/create`, async (req, res) => {
     const { First_Name, 
@@ -64,7 +63,7 @@ router.post(`/create`, async (req, res) => {
                          `'${Encoded_By}',` +
                          `'${moment().format("YYYY-MM-DD HH:mm:ss")}')`
 
-        const result = await conn(query)
+        const result = await connection(query)
 
         if(result){
             res.status(200).send(result)
@@ -81,14 +80,35 @@ router.post(`/create`, async (req, res) => {
 })
 
 router.get(`/getemployee`, async (req, res) => {
+    const { id } = req.query
+
+    try {
+        const query = `SELECT * FROM employees WHERE Id = ${id}`
+
+        const result = await connection(query)
+
+        if(result){
+            res.status(200).send(result)
+        } else {
+            res.status(500).send({
+                status: result,
+                message: result.message
+            })
+        }
+    } catch (error) {
+        return []
+    }
+})
+
+router.get(`/getallemployee`, async (req, res) => {
     const {fields} = req.query
 
     try {
         const query = `SELECT ` + 
                         `${fields} ` + 
-                        `FROM employees`
+                        `FROM employees WHERE Active = true`
 
-        const result = await conn(query)
+        const result = await connection(query)
 
         if(result){
             res.status(200).send(result)
@@ -104,7 +124,7 @@ router.get(`/getemployee`, async (req, res) => {
     }
 })
 
-router.post(`/update`, async (req, res) => {
+router.put(`/update`, async (req, res) => {
     const { Id,
             First_Name, 
             Last_Name, 
@@ -143,11 +163,12 @@ router.post(`/update`, async (req, res) => {
                         `Country = '${Country}', ` +
                         `Post_Code = '${Post_Code}', ` +
                         `Status = '${Status}', ` +
-                        `Active = '${Active}', ` +
+                        `Active = ${Active}, ` +
                         `Last_Changed_By = '${Last_Changed_By}', ` +
+                        `Last_Changed_Date = '${moment().format("YYYY-MM-DD HH:mm:ss")}' ` +
                       `WHERE Id = ${Id}`
 
-        const result = connection(query);
+        const result = await connection(query);
 
         if(result){
             res.status(200).send(result)
@@ -167,7 +188,7 @@ router.post(`/delete`, async (req, res) => {
     const { id } = req.query
 
     try {
-        const query = `DELETE FROM employee WHERE id = ${id}`
+        const query = `UPDATE employees SET Active = false WHERE id = ${id}`
 
         const result = connection(query)
 
