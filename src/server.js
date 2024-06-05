@@ -9,8 +9,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 /* Routes */
-const employeeRoute = require('./routes/Employees')
+const employeeRoute = require('./routes/employees')
+const departmentRoute = require('./routes/departments')
+
 app.use('/employees', employeeRoute)
+app.use('/departments', departmentRoute)
 
 const port = 3001
 
