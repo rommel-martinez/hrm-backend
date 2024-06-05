@@ -2,7 +2,7 @@
 const connection = require('../database/connection')
 const moment = require('moment')
 
-const createDepartment = async (req, res) => {
+const Create = async (req, res) => {
     const { Code, Name, Active, Encoded_By } = req.body
 
     try {
@@ -41,7 +41,7 @@ const createDepartment = async (req, res) => {
     }
 }
 
-const getDepartment = async (req, res) => {
+const GetItem = async (req, res) => {
     const { id } = req.query
 
     try {
@@ -62,7 +62,7 @@ const getDepartment = async (req, res) => {
     }
 }
 
-const getAllDepartment = async (req, res) => {
+const GetAll = async (req, res) => {
     const { fields } = req.query
 
     try {
@@ -84,7 +84,7 @@ const getAllDepartment = async (req, res) => {
     }
 }
 
-const updateDepartment = async (req, res) => {
+const Update = async (req, res) => {
     const { Id, Code, Name, Active, Last_Changed_By } = req.body
 
     try {
@@ -112,7 +112,7 @@ const updateDepartment = async (req, res) => {
     }
 }
 
-const deleteDepartment = async (req, res) => {
+const Delete = async (req, res) => {
     const { id } = req.query
 
     try {
@@ -143,9 +143,9 @@ async function validateName(name){
 }
 
 module.exports = {
-    createDepartment,
-    getDepartment,
-    getAllDepartment,
-    updateDepartment,
-    deleteDepartment
+    Create,
+    GetItem,
+    GetAll,
+    Update,
+    Delete
 }

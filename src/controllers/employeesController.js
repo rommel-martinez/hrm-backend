@@ -1,7 +1,7 @@
 const connection = require('../database/connection');
 var moment = require('moment');
 
-const createEmployee = async (req, res) => {
+const Create = async (req, res) => {
     const { First_Name, 
             Last_Name, 
             Nick_Name, 
@@ -77,7 +77,7 @@ const createEmployee = async (req, res) => {
     }
 }
 
-const getEmployee = async (req, res) => {
+const GetItem = async (req, res) => {
     const { id } = req.query
 
     try {
@@ -98,7 +98,7 @@ const getEmployee = async (req, res) => {
     }
 }
 
-const getAllEmployee = async (req, res) => {
+const GetAll = async (req, res) => {
     const {fields} = req.query
 
     try {
@@ -122,7 +122,7 @@ const getAllEmployee = async (req, res) => {
     }
 }
 
-const updateEmployee = async (req, res) => {
+const Update = async (req, res) => {
     const { Id,
             First_Name, 
             Last_Name, 
@@ -182,7 +182,7 @@ const updateEmployee = async (req, res) => {
     }
 }
 
-const deleteEmployee = async (req, res) => {
+const Delete = async (req, res) => {
     const { id } = req.query
 
     try {
@@ -205,9 +205,9 @@ const deleteEmployee = async (req, res) => {
 }
 
 module.exports = {
-    createEmployee,
-    getEmployee,
-    getAllEmployee,
-    updateEmployee,
-    deleteEmployee
+    Create,
+    GetItem,
+    GetAll,
+    Update,
+    Delete
 }

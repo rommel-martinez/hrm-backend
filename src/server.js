@@ -11,9 +11,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 /* Routes */
 const employeeRoute = require('./routes/employees')
 const departmentRoute = require('./routes/departments')
+const occupationRoute = require('./routes/occupations')
 
 app.use('/employees', employeeRoute)
 app.use('/departments', departmentRoute)
+app.use('/occupations', occupationRoute)
 
 const port = 3001
 
