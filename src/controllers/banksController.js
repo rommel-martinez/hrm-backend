@@ -2,18 +2,18 @@ const connection = require('../database/connection')
 const moment = require('moment')
 
 const Create = async (req, res) => {
-    const { Department_Id, Name, Active, Last_Changed_By } = req.body
+    const { Employee_Id, Account_Holder, Account_Number, Name, Branch, Code, Active, Last_Changed_By } = req.body
 
     try {
-        const query = `INSERT INTO occupations (Department_Id, Name, Active, Encoded_By, Encoded_Date) ` +
-                        `VALUES ('${Department_Id}', '${Name}', ${Active}, '${Last_Changed_By}', '${moment().format('YYYY-MM-DD HH:mm:ss')}')`
-        
+        const query = `INSERT INTO banks (Employee_Id, Account_Holder, Account_Number, Name, Branch, Code, Active, Encoded_By, Encoded_Date) ` +
+                      `VALUES ('${Employee_Id}', '${Account_Holder}', '${Account_Number}', '${Name}', '${Branch}', '${Code}', ${Active}, '${Last_Changed_By}', '${moment().format('YYYY-MM-DD HH:mm:ss')}')`
+
         const result = await connection(query)
 
         if(result){
             res.status(200).send(result)
         } else {
-            res.status(500).send({
+            res.status(200).send({
                 status: result,
                 message: result.message
             })
@@ -27,66 +27,68 @@ const GetItem = async (req, res) => {
     const { id } = req.query
 
     try {
-        const query = `SELECT * FROM occupations WHERE Id = ${id}`
+        const query = `SELECT * FROM banks WHERE Id = ${id}`
 
         const result = await connection(query)
 
-        if(result) {
+        if(result){
             res.status(200).send(result)
         } else {
-            res.status(500).send({
+            res.status(200).send({
                 status: result,
                 message: result.message
             })
-        }
+        }        
     } catch (error) {
         return []
     }
 }
 
-const GetAllItem = async (req, res) => {
+const GetAll = async (req, res) => {
     const { fields } = req.query
 
     try {
-        const query = `SELECT ${fields} FROM occupations WHERE Active = true`
+        const query = `SELECT ${fields} FROM banks WHERE Active = true`
 
-        console.log(query)
         const result = await connection(query)
-        console.log(result)
+
         if(result){
             res.status(200).send(result)
         } else {
-            res.status(500).send({
+            res.status(200).send({
                 status: result,
                 message: result.message
             })
-        }
-
+        }        
     } catch (error) {
         return []
     }
 }
 
 const Update = async (req, res) => {
-    const { Id, Department_Id, Name, Active, Last_Changed_By } = req.body
+    const { Id, Employee_Id, Account_Holder, Account_Number, Name, Branch, Code, Active, Last_Changed_By } = req.body 
 
     try {
-        const query = `UPDATE occupations ` +
-                      `SET ` +
-                        `Department_Id = '${Department_Id}', ` +
+        const query = `UPDATE banks ` +
+                      `SET ` + 
+                        `Employee_Id = '${Employee_Id}', ` +
+                        `Account_Holder = '${Account_Holder}', ` +
+                        `Account_Number = '${Account_Number}', ` +
                         `Name = '${Name}', ` +
+                        `Branch = '${Branch}', ` +
+                        `Code = '${Code}', ` +
                         `Active = ${Active}, ` +
                         `Last_Changed_By = '${Last_Changed_By}', ` +
-                        `Last_Changed_Date = '${moment().format('YYYY-MM-DD HH:mm:ss')}'` +
+                        `Last_Changed_Date = '${moment().format('YYYY-MM-DD HH:mm:ss')}' ` +
                       `WHERE Id = ${Id}`
 
         const result = await connection(query)
 
-        if(result) {
+        if(result){
             res.status(200).send(result)
-        } else{
+        } else {
             res.status(500).send({
-                status: result.status,
+                status: result,
                 message: result.message
             })
         }
@@ -99,18 +101,18 @@ const Delete = async (req, res) => {
     const { id } = req.query
 
     try {
-        const query = `UPDATE occupations SET Active = false WHERE Id = ${id}`
+        const query = `UPDATE banks SET Active = false WHERE Id = ${id}`
 
         const result = await connection(query)
 
         if(result){
             res.status(200).send(result)
-        } else{
+        } else {
             res.status(500).send({
                 status: result,
                 message: result.message
             })
-        }
+        }        
     } catch (error) {
         return false
     }
@@ -119,7 +121,7 @@ const Delete = async (req, res) => {
 module.exports = {
     Create,
     GetItem,
-    GetAllItem,
+    GetAll,
     Update,
     Delete
 }

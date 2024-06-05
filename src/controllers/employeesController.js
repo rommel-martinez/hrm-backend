@@ -18,7 +18,7 @@ const Create = async (req, res) => {
             Post_Code,
             Status,
             Active,
-            Encoded_By
+            Last_Changed_By
     } = req.body
 
     try {
@@ -58,7 +58,7 @@ const Create = async (req, res) => {
                          `'${Post_Code}', ` +
                          `'${Status}', ` +
                          `${Active}, ` +
-                         `'${Encoded_By}',` +
+                         `'${Last_Changed_By}',` +
                          `'${moment().format("YYYY-MM-DD HH:mm:ss")}')`
 
         const result = await connection(query)

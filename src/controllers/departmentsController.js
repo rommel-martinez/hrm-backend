@@ -3,7 +3,7 @@ const connection = require('../database/connection')
 const moment = require('moment')
 
 const Create = async (req, res) => {
-    const { Code, Name, Active, Encoded_By } = req.body
+    const { Code, Name, Active, Last_Changed_By } = req.body
 
     try {
 
@@ -20,7 +20,7 @@ const Create = async (req, res) => {
                             `('${Code}', ` +
                             `'${Name}', ` +
                             `${Active}, ` +
-                            `'${Encoded_By}', ` +
+                            `'${Last_Changed_By}', ` +
                             `'${moment().format("YYYY-MM-DD HH:mm:ss")}')`
                     
             const result = await connection(query)
