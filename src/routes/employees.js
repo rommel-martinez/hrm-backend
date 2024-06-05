@@ -10,6 +10,6 @@ router.get(`/getAllEmployee`, employeesController.getAllEmployee)
 
 router.put(`/updateEmployee`, employeesController.updateEmployee)
 
-router.post(`/deleteEmployee`, employeesController.deleteEmployee)
+router.put(`/deleteEmployee`, employeesController.deleteEmployee)
 
 module.exports = router 

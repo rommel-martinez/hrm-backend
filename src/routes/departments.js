@@ -10,6 +10,6 @@ router.get(`/getAllDepartment`, departmentsController.getAllDepartment)
 
 router.put(`/updateDepartment`, departmentsController.updateDepartment)
 
-router.delete(`/deleteDepartment`, departmentsController.deleteDepartment)
+router.put(`/deleteDepartment`, departmentsController.deleteDepartment)
 
 module.exports = router
