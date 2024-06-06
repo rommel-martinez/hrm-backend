@@ -9,14 +9,20 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 /* Routes */
+// Attendances
 const bankRoute = require('./routes/banks')
-const employeeRoute = require('./routes/employees')
+const contactRoute = require('./routes/contracts')
 const departmentRoute = require('./routes/departments')
+const employeeRoute = require('./routes/employees')
+// Holidays
+// Leave_Requests
+// Logins
 const occupationRoute = require('./routes/occupations')
 
 app.use('/banks', bankRoute)
-app.use('/employees', employeeRoute)
+app.use('/contracts', contactRoute)
 app.use('/departments', departmentRoute)
+app.use('/employees', employeeRoute)
 app.use('/occupations', occupationRoute)
 
 const port = 3001
