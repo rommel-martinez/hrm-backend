@@ -6,7 +6,7 @@ router.post(`/createoccupation`, occupationController.Create)
 
 router.get(`/getoccupation`, occupationController.GetItem)
 
-router.get(`/getalloccupation`, occupationController.GetAllItem)
+router.get(`/getalloccupation`, occupationController.GetAll)
 
 router.put(`/updateoccupation`, occupationController.Update)
 

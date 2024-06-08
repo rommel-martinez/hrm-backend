@@ -14,8 +14,8 @@ const bankRoute = require('./routes/banks')
 const contactRoute = require('./routes/contracts')
 const departmentRoute = require('./routes/departments')
 const employeeRoute = require('./routes/employees')
-// Holidays
-// Leave_Requests
+const holidayRoute = require('./routes/holidays')
+const leaverequestRoute = require('./routes/leaverequest')
 // Logins
 const occupationRoute = require('./routes/occupations')
 
@@ -23,6 +23,8 @@ app.use('/banks', bankRoute)
 app.use('/contracts', contactRoute)
 app.use('/departments', departmentRoute)
 app.use('/employees', employeeRoute)
+app.use('/holidays', holidayRoute)
+app.use('/leaverequests', leaverequestRoute)
 app.use('/occupations', occupationRoute)
 
 const port = 3001
